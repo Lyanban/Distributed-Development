@@ -1,11 +1,13 @@
 package com.lyanba;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lyanba.entry.UmsAdmin;
 import com.lyanba.service.UmsAdminService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +30,17 @@ public class AppTest {
     }
 
     @Test
+    void testMultiSave() {
+        List<UmsAdmin> umsAdminList = new ArrayList<>();
+        for (int i = 1; i <= 100; i++) {
+            UmsAdmin umsAdmin = new UmsAdmin();
+            umsAdmin.setName("Lyanba" + i).setEmail("lyanba" + i + "@lyanba.com").setPhone("1773364-" + i).setImage("202108122001493321696-" + i + ".jpeg");
+            umsAdminList.add(umsAdmin);
+        }
+        umsAdminService.saveBatch(umsAdminList);
+    }
+
+    @Test
     void testUpdate() {
         UmsAdmin umsAdmin = new UmsAdmin();
         umsAdmin.setName("Banban").setEmail("banban@lyanba.com").setPhone("17733645765").setImage("20210812200149332169616.jpeg");
@@ -38,6 +51,14 @@ public class AppTest {
     @Test
     void testQuery() {
         List<UmsAdmin> umsAdminList = umsAdminService.list();
+        umsAdminList.forEach(System.out::println);
+    }
+
+    @Test
+    void testConditionQuery() {
+        QueryWrapper<UmsAdmin> wrapper = new QueryWrapper<>();
+        wrapper.like("name", "7");
+        List<UmsAdmin> umsAdminList = umsAdminService.list(wrapper);
         umsAdminList.forEach(System.out::println);
     }
 }
