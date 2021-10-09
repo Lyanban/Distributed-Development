@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.lyanba</groupId>
+  <artifactId>Distributed-Development</artifactId>
+  <version>1.0.0</version>
+  <modules>
+    <!--<module>common</module>
+    <module>entry</module>
+    <module>admin</module>
+    <module>product</module>
+    <module>generator</module>-->
+  </modules>
+  <packaging>pom</packaging>
+
+  <properties>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
+    <spring-boot-dependencies.version>2.3.12.RELEASE</spring-boot-dependencies.version>
+    <spring-cloud-dependencies.version>Hoxton.SR12</spring-cloud-dependencies.version>
+    <spring-cloud-alibaba-dependencies.version>2.2.1.RELEASE</spring-cloud-alibaba-dependencies.version>
+    <mysql-connector-java.version>8.0.26</mysql-connector-java.version>
+    <mybatis-plus-boot-starter.version>3.4.3.1</mybatis-plus-boot-starter.version>
+    <mybatis-plus-extension.version>3.4.3.1</mybatis-plus-extension.version>
+    <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
+    <velocity-engine-core.version>2.3</velocity-engine-core.version>
+    <lombok.version>1.18.20</lombok.version>
+    <duracloud.common.version>7.0.0</duracloud.common.version>
+    <minio.version>7.1.4</minio.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${spring-boot-dependencies.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud-dependencies.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.alibaba.cloud</groupId>
+        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+        <version>${spring-cloud-alibaba-dependencies.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql-connector-java.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus-boot-starter.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-generator</artifactId>
+        <version>${mybatis-plus-generator.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-extension</artifactId>
+        <version>${mybatis-plus-extension.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.velocity</groupId>
+        <artifactId>velocity-engine-core</artifactId>
+        <version>${velocity-engine-core.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.duracloud/common -->
+      <dependency>
+        <groupId>org.duracloud</groupId>
+        <artifactId>common</artifactId>
+        <version>${duracloud.common.version}</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/io.minio/minio -->
+      <dependency>
+        <groupId>io.minio</groupId>
+        <artifactId>minio</artifactId>
+        <version>${minio.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>
