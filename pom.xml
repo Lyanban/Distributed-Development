@@ -8,11 +8,11 @@
   <artifactId>Distributed-Development</artifactId>
   <version>1.0.0</version>
   <modules>
-    <!--<module>common</module>
+    <module>common</module>
     <module>entry</module>
     <module>admin</module>
     <module>product</module>
-    <module>generator</module>-->
+    <module>generator</module>
   </modules>
   <packaging>pom</packaging>
 

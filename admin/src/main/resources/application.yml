@@ -1,0 +1,32 @@
+lyanba:
+  docker:
+    database:
+      url: 192.168.0.110:3308/docker
+    #      url: 127.0.0.1:3306/docker
+    nacos:
+      url: 192.168.0.110:8848
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: admin
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${lyanba.docker.database.url}?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=utf8
+    username: root
+    password: root
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 8
+
+mybatis-plus:
+  type-aliases-package: com.lyanba.entry
+#  输出日志，与下面的 logging 可替换
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+logging:
+  level:
+    com.lyanba.mapper: debug
