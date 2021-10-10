@@ -39,6 +39,7 @@ public class UmsAdminController {
     Page<UmsAdmin> list(int pageNo, int pageSize) throws InterruptedException {
         // 模拟网络延时
         TimeUnit.SECONDS.sleep(1);
+        int a = 1 / 0;
         return umsAdminService.page(new Page<>(pageNo, pageSize));
     }
 }
