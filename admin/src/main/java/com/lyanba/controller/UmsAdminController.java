@@ -7,6 +7,7 @@ import com.lyanba.entry.UmsAdmin;
 import com.lyanba.service.UmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +53,12 @@ public class UmsAdminController {
     @GetMapping("/list")
     ResultJson<Page<UmsAdmin>> list(int pageNo, int pageSize, String search) {
         return ResultJson.success(umsAdminService.list(pageNo, pageSize, search));
+    }
+
+    // 新增用户
+    @PostMapping("/save")
+    ResultJson<Boolean> saveUmsAdmin(UmsAdmin umsAdmin) {
+        return ResultJson.success(umsAdminService.save(umsAdmin), "新增用户成功");
     }
 }
 

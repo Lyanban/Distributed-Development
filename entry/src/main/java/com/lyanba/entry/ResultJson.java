@@ -25,7 +25,7 @@ public class ResultJson<T> {
         return new ResultJson<>(resultCode.getCode(), message, obj);
     }
 
-    public static <T> ResultJson<T> success(String message, T obj) {
+    public static <T> ResultJson<T> success(T obj, String message) {
         return getInstance(ResultCode.SUCCESS, obj, message);
     }
     public static <T> ResultJson<T> success(T obj) {

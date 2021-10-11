@@ -17,17 +17,17 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
 public class UmsAdmin extends BaseEntry {
-
     private static final long serialVersionUID = 1L;
 
     private String name;
 
     private String email;
 
+    private String password;
+
     private String phone;
 
     private String image;
 
     private Integer active;
-
 }
