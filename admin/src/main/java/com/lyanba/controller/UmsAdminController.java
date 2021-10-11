@@ -6,11 +6,7 @@ import com.lyanba.entry.ResultJson;
 import com.lyanba.entry.UmsAdmin;
 import com.lyanba.service.UmsAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -59,6 +55,22 @@ public class UmsAdminController {
     @PostMapping("/save")
     ResultJson<Boolean> saveUmsAdmin(UmsAdmin umsAdmin) {
         return ResultJson.success(umsAdminService.save(umsAdmin), "新增用户成功");
+    }
+
+    // 根据 id 获取 UmsAdmin 对象
+    @GetMapping("/getAdminById")
+    ResultJson<UmsAdmin> getUmsAdminById(Long id) {
+        return ResultJson.success(umsAdminService.getById(id));
+    }
+
+    @PutMapping("/update")
+    ResultJson<Boolean> updateUmsAdminById(UmsAdmin umsAdmin) {
+        return ResultJson.success(umsAdminService.updateById(umsAdmin), "更新用户成功");
+    }
+
+    @PutMapping("/delete")
+    ResultJson<Boolean> deleteUmsAdminById(UmsAdmin umsAdmin) {
+        return ResultJson.success(umsAdminService.updateById(umsAdmin), umsAdmin.getActive() == 0 ? "删除用户成功" : "恢复用户成功");
     }
 }
 
