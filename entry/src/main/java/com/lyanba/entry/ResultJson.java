@@ -1,5 +1,7 @@
 package com.lyanba.entry;
 
+import lombok.Getter;
+
 /**
  * @className: ResultJson
  * @description: 返回值封装类
@@ -7,6 +9,7 @@ package com.lyanba.entry;
  * @since: 2021/10/10 20:41
  * @todo:
  */
+@Getter
 public class ResultJson<T> {
     private Integer code;
     private String message;

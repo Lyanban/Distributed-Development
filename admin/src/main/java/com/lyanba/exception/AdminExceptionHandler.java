@@ -1,5 +1,6 @@
 package com.lyanba.exception;
 
+import com.lyanba.entry.ResultJson;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -12,8 +13,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 public class AdminExceptionHandler {
-    @ExceptionHandler
+    /*@ExceptionHandler
     String defaultExceptionHandler(Exception e) {
         return e.getMessage();
+    }*/
+
+    // 使用封装的返回结果 ResultJson
+    @ExceptionHandler
+    ResultJson<String> defaultExceptionHandler(Exception e) {
+        return ResultJson.failed(e.getMessage());
     }
 }
