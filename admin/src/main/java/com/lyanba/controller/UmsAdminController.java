@@ -43,9 +43,15 @@ public class UmsAdminController {
     }*/
 
     // 优化分页查询，使用封装的返回结果 ResultJson
-    @GetMapping("/list")
+    /*@GetMapping("/list")
     ResultJson<Page<UmsAdmin>> list(int pageNo, int pageSize) {
         return ResultJson.success(umsAdminService.page(new Page<>(pageNo, pageSize)));
+    }*/
+
+    // 添加条件查询
+    @GetMapping("/list")
+    ResultJson<Page<UmsAdmin>> list(int pageNo, int pageSize, String search) {
+        return ResultJson.success(umsAdminService.list(pageNo, pageSize, search));
     }
 }
 
