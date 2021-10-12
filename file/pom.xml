@@ -9,7 +9,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>admin</artifactId>
+  <artifactId>file</artifactId>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
@@ -17,12 +17,6 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>com.lyanba</groupId>
-      <artifactId>entry</artifactId>
-      <version>1.0.0</version>
-    </dependency>
-
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
@@ -40,8 +34,19 @@
     </dependency>
 
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>com.lyanba</groupId>
+      <artifactId>entry</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.minio</groupId>
+      <artifactId>minio</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.duracloud</groupId>
+      <artifactId>common</artifactId>
     </dependency>
 
     <dependency>
@@ -60,23 +65,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.duracloud</groupId>
-      <artifactId>common</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>io.minio</groupId>
-      <artifactId>minio</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
 
     <!--<dependency>

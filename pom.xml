@@ -13,6 +13,7 @@
     <module>admin</module>
     <module>product</module>
     <module>generator</module>
+    <module>file</module>
   </modules>
   <packaging>pom</packaging>
 

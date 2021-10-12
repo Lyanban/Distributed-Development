@@ -4,10 +4,18 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lyanba.entry.ResultJson;
 import com.lyanba.entry.UmsAdmin;
+import com.lyanba.service.FileService;
 import com.lyanba.service.UmsAdminService;
+import io.minio.MinioClient;
+import io.minio.PutObjectArgs;
+import io.minio.errors.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +32,9 @@ import java.util.concurrent.TimeUnit;
 public class UmsAdminController {
     @Autowired
     UmsAdminService umsAdminService;
+
+    @Autowired
+    FileService fileService;
 
     /*@GetMapping("/list")
     List<UmsAdmin> list() {
@@ -52,9 +63,33 @@ public class UmsAdminController {
     }
 
     // 新增用户
-    @PostMapping("/save")
+    /*@PostMapping("/save")
     ResultJson<Boolean> saveUmsAdmin(UmsAdmin umsAdmin) {
         return ResultJson.success(umsAdminService.save(umsAdmin), "新增用户成功");
+    }*/
+
+    // 优化新增用户功能，新增上传头像功能
+    @PostMapping("/save")
+    ResultJson<Boolean> saveUmsAdmin(UmsAdmin umsAdmin, MultipartFile file) throws Exception {
+        // 使用 MinIO 服务的 URL，端口，Access key 和 Secret key 创建一个 MinioClient 对象
+        MinioClient minioClient = MinioClient.builder()
+                .endpoint("http://192.168.0.110:9000/")
+                .credentials("root", "rootroot")
+                .build();
+        /*
+            bucket -> MinIO 图片服务器建立的桶
+            object -> 要上传的文件名
+            contentType -> 要上传的文件后缀名/文件类型
+            stream -> 要上传的文件流
+         */
+        PutObjectArgs args = PutObjectArgs.builder()
+                .bucket("images")
+                .object(file.getOriginalFilename())
+                .contentType(file.getContentType())
+                .stream(file.getInputStream(), file.getSize(), 0)
+                .build();
+        minioClient.putObject(args);
+        return ResultJson.success(null, "新增用户成功");
     }
 
     // 根据 id 获取 UmsAdmin 对象
@@ -71,6 +106,12 @@ public class UmsAdminController {
     @PutMapping("/delete")
     ResultJson<Boolean> deleteUmsAdminById(UmsAdmin umsAdmin) {
         return ResultJson.success(umsAdminService.updateById(umsAdmin), umsAdmin.getActive() == 0 ? "删除用户成功" : "恢复用户成功");
+    }
+
+    @GetMapping("/hello")
+    String hello() {
+        //System.out.println();
+        return fileService.hello();
     }
 }
 
