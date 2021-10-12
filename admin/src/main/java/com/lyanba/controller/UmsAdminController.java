@@ -107,11 +107,5 @@ public class UmsAdminController {
     ResultJson<Boolean> deleteUmsAdminById(UmsAdmin umsAdmin) {
         return ResultJson.success(umsAdminService.updateById(umsAdmin), umsAdmin.getActive() == 0 ? "删除用户成功" : "恢复用户成功");
     }
-
-    @GetMapping("/hello")
-    String hello() {
-        //System.out.println();
-        return fileService.hello();
-    }
 }
 

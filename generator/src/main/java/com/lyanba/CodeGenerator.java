@@ -43,7 +43,7 @@ public class CodeGenerator {
         // 设置entry路径
         String entryPath = projectPath + "/entry/src/main/java/com/lyanba/entry";
         // 设置其他模块路径
-        String otherModule = "admin";
+        String otherModule = "file";
         String otherPath = projectPath + "/" + otherModule + "/src/main";
         // 包配置
         PackageConfig pc = new PackageConfig();
@@ -75,7 +75,7 @@ public class CodeGenerator {
         // 父类中的公共字段
         strategy.setSuperEntityColumns("id");
         // 要生成的表名
-        strategy.setInclude("ums_admin");
+        strategy.setInclude("pms_file");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);

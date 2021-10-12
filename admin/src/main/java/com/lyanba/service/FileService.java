@@ -13,6 +13,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @FeignClient("file")
 public interface FileService {
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    String hello();
+
 }
