@@ -79,9 +79,10 @@
       <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
 
-    <!--<dependency>
+    <!-- 导入这个依赖后，模块中不能再使用 1application1.yml/application.properties 文件，要改成 bootstrap.yml/bootstrap.properties -->
+    <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-    </dependency>-->
+    </dependency>
   </dependencies>
 </project>

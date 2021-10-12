@@ -10,6 +10,7 @@ import io.minio.PutObjectArgs;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,6 +27,14 @@ import java.time.format.DateTimeFormatter;
  */
 @Service
 public class PmsFileServiceImpl extends ServiceImpl<PmsFileMapper, PmsFile> implements PmsFileService {
+    // 配置中心中的数据
+    @Value("${minio.endpoint}")
+    String endpoint;
+    @Value("${minio.accessKey}")
+    String accessKey;
+    @Value("${minio.secretKey}")
+    String secretKey;
+
     @Override
     public String fileUpload(MultipartFile multipartFile) throws Exception {
         // 获取文件的 MD5
@@ -50,15 +59,16 @@ public class PmsFileServiceImpl extends ServiceImpl<PmsFileMapper, PmsFile> impl
                 .append(".")
                 .append(suffix);
 
-        MinioClient minioClient = MinioClient.builder()
+        /*MinioClient minioClient = MinioClient.builder()
                 .endpoint("http://192.168.0.110:9000")
                 .credentials("root", "rootroot")
-                .build();
+                .build();*/
 
-        /*MinioClient minioClient = MinioClient.builder()
+        // 使用配置中心中
+        MinioClient minioClient = MinioClient.builder()
                 .endpoint(endpoint)
                 .credentials(accessKey, secretKey)
-                .build();*/
+                .build();
         /*
             bucket -> MinIO 图片服务器建立的桶
             object -> 要上传的文件名

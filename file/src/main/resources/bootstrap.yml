@@ -1,0 +1,18 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: file
+  # 因为别的配置在 nacos 配置中心配置好了，所以这里只需要配置 nacos
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.0.110:8848
+        # 表示在 nacos 配置中心中各个配置的公共前缀
+        prefix: lyanba
+        # 表示在 nacos 配置中心中各个配置的后缀
+        file-extension: yml
+  profiles:
+    # 表示在注册中心中需要引入的配置，结合上面的 prefix 和 file-extension，即 lyanba-registry.yml、lyanba-database.yml 和 lyanba-fileupload.yml
+    active: database, registry, fileupload

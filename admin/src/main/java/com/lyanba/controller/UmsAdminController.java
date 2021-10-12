@@ -69,19 +69,19 @@ public class UmsAdminController {
     }*/
 
     // 优化新增用户功能，新增上传头像功能
-    @PostMapping("/save")
+    /*@PostMapping("/save")
     ResultJson<Boolean> saveUmsAdmin(UmsAdmin umsAdmin, MultipartFile file) throws Exception {
         // 使用 MinIO 服务的 URL，端口，Access key 和 Secret key 创建一个 MinioClient 对象
         MinioClient minioClient = MinioClient.builder()
                 .endpoint("http://192.168.0.110:9000/")
                 .credentials("root", "rootroot")
                 .build();
-        /*
+        *//*
             bucket -> MinIO 图片服务器建立的桶
             object -> 要上传的文件名
             contentType -> 要上传的文件后缀名/文件类型
             stream -> 要上传的文件流
-         */
+         *//*
         PutObjectArgs args = PutObjectArgs.builder()
                 .bucket("images")
                 .object(file.getOriginalFilename())
@@ -90,6 +90,13 @@ public class UmsAdminController {
                 .build();
         minioClient.putObject(args);
         return ResultJson.success(null, "新增用户成功");
+    }*/
+
+    // 头像上传改为远程调用上传到 MinIO 图片服务器
+    @PostMapping("/save")
+    ResultJson<Boolean> saveUmsAdmin(UmsAdmin umsAdmin, MultipartFile file) throws Exception {
+        umsAdmin.setImage(fileService.fileUpload(file));
+        return ResultJson.success(umsAdminService.save(umsAdmin), "新增用户成功");
     }
 
     // 根据 id 获取 UmsAdmin 对象
