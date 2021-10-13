@@ -1,5 +1,6 @@
 package com.lyanba.entry;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.lyanba.entry.BaseEntry;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,6 +25,9 @@ public class UmsAdmin extends BaseEntry {
     private String email;
 
     private String password;
+
+    @TableField(exist = false)// 该注解表示本属性不属于数据库表中的列
+    private String rawPassword;
 
     private String phone;
 

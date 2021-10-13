@@ -10,6 +10,7 @@ import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.errors.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,6 +36,9 @@ public class UmsAdminController {
 
     @Autowired
     FileService fileService;
+
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     /*@GetMapping("/list")
     List<UmsAdmin> list() {
@@ -93,8 +97,16 @@ public class UmsAdminController {
     }*/
 
     // 头像上传改为远程调用上传到 MinIO 图片服务器
+    /*@PostMapping("/save")
+    ResultJson<Boolean> saveUmsAdmin(UmsAdmin umsAdmin, MultipartFile file) throws Exception {
+        umsAdmin.setImage(fileService.fileUpload(file));
+        return ResultJson.success(umsAdminService.save(umsAdmin), "新增用户成功");
+    }*/
+
+    // 优化新增用户，支持密码加密
     @PostMapping("/save")
     ResultJson<Boolean> saveUmsAdmin(UmsAdmin umsAdmin, MultipartFile file) throws Exception {
+        umsAdmin.setPassword(passwordEncoder.encode(umsAdmin.getRawPassword()));
         umsAdmin.setImage(fileService.fileUpload(file));
         return ResultJson.success(umsAdminService.save(umsAdmin), "新增用户成功");
     }
@@ -105,8 +117,19 @@ public class UmsAdminController {
         return ResultJson.success(umsAdminService.getById(id));
     }
 
-    @PutMapping("/update")
+    // 更新用户
+   /* @PutMapping("/update")
     ResultJson<Boolean> updateUmsAdminById(UmsAdmin umsAdmin) {
+        return ResultJson.success(umsAdminService.updateById(umsAdmin), "更新用户成功");
+    }*/
+
+    // 优化更新用户头像部分，若更新时没有上传图片，则视为不更新头像
+    @PutMapping("/update")
+    ResultJson<Boolean> updateUmsAdminById(UmsAdmin umsAdmin, MultipartFile file) {
+        // 判断用户是否上传了头像
+        if (null != file && 0 < file.getSize()) {
+            umsAdmin.setImage(fileService.fileUpload(file));
+        }
         return ResultJson.success(umsAdminService.updateById(umsAdmin), "更新用户成功");
     }
 
