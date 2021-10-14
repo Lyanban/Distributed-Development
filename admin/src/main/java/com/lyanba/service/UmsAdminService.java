@@ -14,4 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UmsAdminService extends IService<UmsAdmin> {
     Page<UmsAdmin> list(int pageNo, int pageSize, String search);
+
+    int check(Long id, String text);
 }
