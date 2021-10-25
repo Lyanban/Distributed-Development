@@ -14,6 +14,7 @@
     <module>product</module>
     <module>generator</module>
     <module>file</module>
+    <module>gateway</module>
   </modules>
   <packaging>pom</packaging>
 

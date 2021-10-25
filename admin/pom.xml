@@ -17,6 +17,8 @@
   </properties>
 
   <dependencies>
+    <!-- 以下依赖提取到公共模块中，再导入 common 模块即可 -->
+    <!--
     <dependency>
       <groupId>com.lyanba</groupId>
       <artifactId>entry</artifactId>
@@ -79,10 +81,17 @@
       <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
 
-    <!-- 导入这个依赖后，模块中不能再使用 1application1.yml/application.properties 文件，要改成 bootstrap.yml/bootstrap.properties -->
+    &lt;!&ndash; 导入这个依赖后，模块中不能再使用 1application1.yml/application.properties 文件，要改成 bootstrap.yml/bootstrap.properties &ndash;&gt;
     <dependency>
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+    </dependency>
+    -->
+
+    <dependency>
+      <groupId>com.lyanba</groupId>
+      <artifactId>common</artifactId>
+      <version>1.0.0</version>
     </dependency>
 
     <dependency>

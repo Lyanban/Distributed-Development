@@ -1,0 +1,15 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: gateway
+    # 因为别的配置在 nacos 配置中心配置好了，所以这里只需要配置 nacos
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.0.110:8848
+        prefix: lyanba
+        file-extension: yml
+  profiles:
+    active: registry, gateway

@@ -20,6 +20,10 @@ import java.util.Map;
  */
 public class CodeGenerator {
     public static void main(String[] args) {
+        // 生成代码只需改这两个值
+        String moduleName = "product";
+        String tableName = "pms_brand";
+
         // 创建代码生成器对象
         AutoGenerator mpg = new AutoGenerator();
         // 创建全局配置对象
@@ -43,7 +47,7 @@ public class CodeGenerator {
         // 设置entry路径
         String entryPath = projectPath + "/entry/src/main/java/com/lyanba/entry";
         // 设置其他模块路径
-        String otherModule = "file";
+        String otherModule = moduleName;
         String otherPath = projectPath + "/" + otherModule + "/src/main";
         // 包配置
         PackageConfig pc = new PackageConfig();
@@ -75,7 +79,7 @@ public class CodeGenerator {
         // 父类中的公共字段
         strategy.setSuperEntityColumns("id");
         // 要生成的表名
-        strategy.setInclude("pms_file");
+        strategy.setInclude(tableName);
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);

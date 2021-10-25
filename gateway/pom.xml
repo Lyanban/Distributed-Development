@@ -9,7 +9,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>product</artifactId>
+  <artifactId>gateway</artifactId>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
@@ -17,11 +17,19 @@
   </properties>
 
   <dependencies>
-    <!-- 公共模块 common 集成了所需依赖 -->
     <dependency>
-      <groupId>com.lyanba</groupId>
-      <artifactId>common</artifactId>
-      <version>1.0.0</version>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-gateway</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
     </dependency>
   </dependencies>
 </project>

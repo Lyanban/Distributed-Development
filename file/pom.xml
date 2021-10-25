@@ -74,5 +74,11 @@
       <groupId>com.alibaba.cloud</groupId>
       <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
     </dependency>
+
+    <!--<dependency>
+      <groupId>com.lyanba</groupId>
+      <artifactId>common</artifactId>
+      <version>1.0.0</version>
+    </dependency>-->
   </dependencies>
 </project>

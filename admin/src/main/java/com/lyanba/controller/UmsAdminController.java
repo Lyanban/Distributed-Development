@@ -139,7 +139,7 @@ public class UmsAdminController {
         return ResultJson.success(umsAdminService.updateById(umsAdmin), umsAdmin.getActive() == 0 ? "删除用户成功" : "恢复用户成功");
     }
 
-    // 添加验证用户信息功能，添加用户是检查邮箱、手机是否已被注册
+    // 添加验证用户信息功能，添加用户时检查邮箱、手机是否已被注册
     @GetMapping("/check")
     ResultJson<Integer> checkEmailPhone(Long id, String text) {
         return ResultJson.success(umsAdminService.check(id, text));
